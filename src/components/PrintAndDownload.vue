@@ -1,6 +1,6 @@
 <template>
   <div class="printAndDownlaod">
-    <div class="qrCodeSize">
+    <div class="qrCodeSetting notSection">
       <span>設定:</span>
       <!-- radio size 開始 -->
       <div class="radioBtn form-check-inline ms-2">
@@ -73,12 +73,14 @@
     <br />
 
     <!-- 按鈕 開始 -->
-    <button type="button" class="btn btn-success" @click.capture="print">
-      列印
-    </button>
-    <button type="button" class="btn btn-primary m-2" @click="download">
-      下載 .pdf
-    </button>
+    <div class="btn notSection">
+      <button type="button" class="btn btn-success" @click.capture="print">
+        列印
+      </button>
+      <button type="button" class="btn btn-primary m-2" @click="download">
+        下載 .pdf
+      </button>
+    </div>
     <!-- 按鈕 結束 -->
   </div>
 </template>
@@ -189,5 +191,19 @@ export default {
 <style lang="scss" scoped>
 .hint {
   color: red;
+}
+
+/* 列印去除頭尾以及不顯示其他區塊 */
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+    orphans: 4;
+    widows: 2;
+  }
+
+  .notSection {
+    display: none;
+  }
 }
 </style>
